@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-const Blocks = () => {
+const Transactions = () => {
   return (
     <div className="bg-slate-900 rounded-md">
       <div className="font-bold p-4 border-b border-b-slate-800">
-        Latest Blocks
+        Latest Transactions
       </div>
       <div className="flex flex-col">
         <div className="flex items-center gap-5 p-4 text-sm cursor-pointer border-b border-b-slate-800">
@@ -20,12 +20,14 @@ const Blocks = () => {
           </div>
           <div className="flex flex-col text-left">
             <div className="text-blue-500">17457845</div>
-            <div className="text-gray-500">16 secs ago</div>
+            <div>16 secs ago</div>
           </div>
-          <div className="flex flex-col text-left">
-            <div>Fee Recipient Lido: Execution Laye</div>
+          <div className="flex flex-col text-center">
             <div>
-              <span className="text-blue-500"> 167 txns </span> in 12 secs
+              From <span className="text-blue-500"> 0xF28d6B...926ef5FC</span>
+            </div>
+            <div>
+              To <span className="text-blue-500">0xd0764F...56D5636c</span>
             </div>
           </div>
           <div className="p-2 font-bold bg-slate-950 border border-slate-800 text-xs rounded-md ml-auto">
@@ -37,4 +39,4 @@ const Blocks = () => {
   );
 };
 
-export default Blocks;
+export default Transactions;
