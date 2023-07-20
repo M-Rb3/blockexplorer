@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 const Transactions = () => {
   return (
-    <div className="bg-slate-900 rounded-md">
-      <div className="font-bold p-4 border-b border-b-slate-800">
+    <div className="bg-zinc-900 rounded-md">
+      <div className="font-bold p-4 border-b border-b-zinc-800">
         Latest Transactions
       </div>
       <div className="flex flex-col">
-        <div className="flex items-center gap-5 p-4 text-sm cursor-pointer border-b border-b-slate-800">
-          <div className="h-12 w-12 flex items-center justify-center bg-slate-800 rounded-md">
+        <div className="flex items-center gap-5 p-4 text-sm cursor-pointer border-b border-b-zinc-800">
+          <div className="h-12 w-12 flex items-center justify-center bg-zinc-800 rounded-md">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="1.2em"
@@ -30,7 +30,7 @@ const Transactions = () => {
               To <span className="text-blue-500">0xd0764F...56D5636c</span>
             </div>
           </div>
-          <div className="p-2 font-bold bg-slate-950 border border-slate-800 text-xs rounded-md ml-auto">
+          <div className="p-2 font-bold bg-zinc-950 border border-zinc-800 text-xs rounded-md ml-auto">
             0.04007 Eth
           </div>
         </div>

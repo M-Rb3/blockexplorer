@@ -23,7 +23,7 @@ function App() {
   });
 
   return (
-    <div className="App text-white bg-slate-800 min-h-screen flex flex-col justify-start items-center">
+    <div className="App text-white bg-zinc-800 min-h-screen flex flex-col justify-start items-center">
       <Nav />
       <Hero />
       <div className="max-w-screen-xl px-5 w-full">
