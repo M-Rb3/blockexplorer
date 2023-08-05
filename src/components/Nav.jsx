@@ -8,7 +8,7 @@ const Nav = () => {
   const dispatch = useContext(SettingDispatchContext);
   return (
     <div className="bg-zinc-900 w-full flex justify-center">
-      <div className="flex flex-col w-full max-w-screen-xl">
+      <div className="flex flex-col w-full">
         <div className="flex gap-5 text-xs px-5 py-1 items-center border-b  border-b-zinc-700 shadow-zinc-500 sticky top-0">
           <div>
             ETH Price: <span className="text-blue-500">$1,753.15 </span>

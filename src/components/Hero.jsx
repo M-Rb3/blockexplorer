@@ -2,8 +2,8 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <div className="flex justify-center bg-zinc-950 w-full">
-      <div className="flex flex-col bg-[url('https://etherscan.io/images/svg/waves-light.svg')] pb-24 pt-14 px-5 w-full max-w-screen-xl">
+    <div className="flex justify-center bg-[url('https://etherscan.io/images/svg/waves-light.svg')] bg-zinc-950 w-full">
+      <div className="flex flex-col pb-24 pt-14 px-5 w-full max-w-screen-xl">
         <div className="font-bold text-xl">
           The Ethereum Blockchain Explorer
         </div>
