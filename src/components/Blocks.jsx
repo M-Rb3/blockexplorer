@@ -3,28 +3,20 @@ import { SettingContext } from "../context/setting.context";
 import { timeDifference, getBlockReward } from "./utils";
 
 const Blocks = () => {
-  const [updatedBlocks, setUpdatedBlocks] = useState([]);
   const { alchemy, blocks } = useContext(SettingContext);
 
-  useEffect(() => {
-    if (blocks) {
-      (async function () {
-        const newBlcoks = [];
-        for (let i = 0; i < blocks.length; i++) {
-          const blockReward = await getBlockReward(blocks[i], alchemy);
-          newBlcoks.push({ ...blocks[i], blockReward });
-        }
-        setUpdatedBlocks(newBlcoks);
-      })();
-    }
-  }, [blocks, alchemy]);
+  async function getReward(block) {
+    const blockReward = await getBlockReward(block, alchemy);
+    return blockReward;
+  }
+
   return (
     <div className="bg-zinc-900 rounded-md">
       <div className="font-bold p-4 border-b border-b-zinc-800">
         Latest Blocks
       </div>
       <div className="flex flex-col">
-        {updatedBlocks?.map((block) => (
+        {blocks?.map((block) => (
           <div
             className="flex items-center gap-5 p-4 text-sm cursor-pointer border-b border-b-zinc-800"
             key={block.number}
@@ -57,7 +49,7 @@ const Blocks = () => {
               </div>
             </div>
             <div className="p-2 font-bold bg-zinc-950 border border-zinc-800 text-xs rounded-md ml-auto">
-              {block.blockReward} Eth
+              {getReward(block, alchemy)} Eth
             </div>
           </div>
         ))}

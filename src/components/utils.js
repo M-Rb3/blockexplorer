@@ -25,28 +25,33 @@ export function timeDifference(previous) {
     return Math.round(elapsed / msPerYear) + " years ago";
   }
 }
+
 export const getBlockReward = async (block, alchemy) => {
   const getGasUsage = async (hash) => {
     const txRes = await alchemy.core.getTransactionReceipt(`${hash}`);
     return txRes.gasUsed;
   };
-
   try {
     console.log("fetching block rewards...");
-    const transactions = block.transactions;
+    const transactions = block?.transactions;
+    console.log(block);
     const baseFeePerGas = block.baseFeePerGas;
     const gasUsed = block.gasUsed;
 
     let minerTips = [];
     let sumMinerTips = 0;
+
     for (const tx of transactions) {
       const txGasUseage = await getGasUsage(tx.hash);
+      console.log(txGasUseage);
       const totalFee = Utils.formatEther(
         ethers.BigNumber.from(txGasUseage).mul(tx.gasPrice).toString()
       );
+      console.log(totalFee);
+
       minerTips.push(Number(totalFee));
     }
-
+    console.log(minerTips);
     if (transactions.length > 0) {
       sumMinerTips = minerTips.reduce(
         (prevTip, currentTip) => prevTip + currentTip
@@ -61,7 +66,7 @@ export const getBlockReward = async (block, alchemy) => {
 
     const blockReward = baseBlockReward + (sumMinerTips - Number(burnedFee));
 
-    return blockReward;
+    return blockReward.toFixed(3);
   } catch (error) {
     console.log(error);
     return "";

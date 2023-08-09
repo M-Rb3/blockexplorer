@@ -39,6 +39,7 @@ function App() {
           transactions = [...transactions.slice(0, 10 - transactions.length)];
         }
       });
+      console.log(blocks);
       dispatch({
         blocks,
         blockNumber,
@@ -49,8 +50,7 @@ function App() {
   });
 
   return (
-    <div className="App text-white bg-zinc-800 min-h-screen flex flex-col justify-start items-center">
-      <Nav />
+    <>
       <Hero />
       <div className="max-w-screen-xl px-5 w-full">
         <div className="mb-4 -mt-8">
@@ -65,7 +65,7 @@ function App() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
