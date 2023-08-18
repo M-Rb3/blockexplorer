@@ -1,21 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import { SettingDispatchContext } from "./context/setting.context";
+import { SettingDispatchContext } from "./context/AppStateContext";
 import Nav from "./components/Nav";
 import Hero from "./components/Hero";
 import Blocks from "./components/Blocks";
 import Transactions from "./components/Transactions";
 import HeroDetails from "./components/HeroDetails";
-import { Alchemy, Network } from "alchemy-sdk";
 
 function App() {
   const dispatch = useContext(SettingDispatchContext);
-
-  const settings = {
-    apiKey: process.env.REACT_APP_ALCHEMY_API_KEY,
-    network: Network.ETH_MAINNET,
-  };
-
-  const alchemy = new Alchemy(settings);
 
   useEffect(() => {
     (async function getBlockNumber() {

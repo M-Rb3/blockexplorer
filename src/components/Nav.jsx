@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import {
   SettingContext,
   SettingDispatchContext,
-} from "../context/setting.context";
+} from "../context/AppStateContext";
 const Nav = () => {
   const { alchemy } = useContext(SettingContext);
   const dispatch = useContext(SettingDispatchContext);

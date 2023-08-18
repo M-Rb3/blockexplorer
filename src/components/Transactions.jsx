@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { SettingContext } from "../context/setting.context";
+import { SettingContext } from "../context/AppStateContext";
 import { timeDifference, getBlockReward } from "./utils";
 
 const Transactions = () => {

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import {
   SettingContext,
   SettingDispatchContext,
-} from "../context/setting.context";
+} from "../context/AppStateContext";
 import axios from "axios";
 
 const HeroDetails = () => {

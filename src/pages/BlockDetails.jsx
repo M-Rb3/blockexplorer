@@ -1,7 +1,22 @@
-import React from "react";
-import { timeDifference } from "../components/utils";
+import React, { useContext,useEffect } from "react";
+import { timeDifference, getBlockReward } from "../components/utils";
 import { ethers } from "ethers";
+import { useParams } from "react-router-dom";
+import { SettingContext } from "../context/AppStateContext";
+
 const BlockDetails = () => {
+  const { blockNumber } = useParams();
+
+  const { alchemy } = useContext(SettingContext);
+
+  async function getReward(block) {
+    const blockReward = await getBlockReward(block, alchemy);
+    return blockReward;
+  }
+
+  useEffect(()=>{
+    getBlockReward(block)
+  }.[])
   return (
     <div className="max-w-screen-xl px-5 w-full flex flex-col">
       <div className="flex gap-1 py-3">
@@ -36,6 +51,13 @@ const BlockDetails = () => {
             {" "}
             13215 transactions
             {/* {block.transactions?.length} transactions */}
+          </div>
+        </div>
+        <div className="grid grid-cols-[30%70%] p-1">
+          <div className="text-zinc-400"> Block Reward: </div>
+          <div>
+            0.062444331574352069 ETH
+            {block.difficulty}
           </div>
         </div>
         <div className="grid grid-cols-[30%70%] p-1">
