@@ -1,11 +1,7 @@
-import React, { useContext } from "react";
-import {
-  SettingContext,
-  SettingDispatchContext,
-} from "../context/AppStateContext";
+import React from "react";
+import { Link } from "react-router-dom";
+
 const Nav = () => {
-  const { alchemy } = useContext(SettingContext);
-  const dispatch = useContext(SettingDispatchContext);
   return (
     <div className="bg-zinc-900 w-full flex justify-center">
       <div className="flex flex-col w-full">
@@ -29,13 +25,16 @@ const Nav = () => {
             </button>
           </div>
         </div>
-        <div className="flex w-full border-b  border-b-zinc-700 shadow-zinc-500 items-center justify-start px-5 py-4">
+        <Link
+          to="/"
+          className="flex w-full border-b  border-b-zinc-700 shadow-zinc-500 items-center justify-start px-5 py-4"
+        >
           <img
             src="https://etherscan.io/assets/svg/logos/logo-etherscan-light.svg?v=0.0.5"
             className="w-36 h-auto"
             alt=""
           />
-        </div>
+        </Link>
       </div>
     </div>
   );

@@ -1,23 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { SettingContext } from "../context/AppStateContext";
 import { timeDifference, getBlockReward } from "./utils";
+import { ethers } from "ethers";
 
 const Transactions = () => {
   // const [updatedBlocks, setUpdatedBlocks] = useState([]);
   const { alchemy, transactions } = useContext(SettingContext);
 
-  // useEffect(() => {
-  //   if (blocks) {
-  //     (async function () {
-  //       const newBlcoks = [];
-  //       for (let i = 0; i < blocks.length; i++) {
-  //         const blockReward = await getBlockReward(blocks[i], alchemy);
-  //         newBlcoks.push({ ...blocks[i], blockReward });
-  //       }
-  //       setUpdatedBlocks(newBlcoks);
-  //     })();
-  //   }
-  // }, [blocks, alchemy]);
   return (
     <div className="bg-zinc-900 rounded-md">
       <div className="font-bold p-4 border-b border-b-zinc-800">
@@ -38,19 +27,29 @@ const Transactions = () => {
               </svg>
             </div>
             <div className="flex flex-col text-left">
-              <div className="text-blue-500">17457845</div>
+              <div className="text-blue-500">
+                {transaction.hash.slice(0, 14)}...
+              </div>
               <div>16 secs ago</div>
             </div>
             <div className="flex flex-col text-center">
               <div>
-                From <span className="text-blue-500"> 0xF28d6B...926ef5FC</span>
+                From{" "}
+                <span className="text-blue-500">
+                  {" "}
+                  {transaction.from.slice(0, 14)}...
+                </span>
               </div>
               <div>
-                To <span className="text-blue-500">0xd0764F...56D5636c</span>
+                To{" "}
+                <span className="text-blue-500">
+                  {" "}
+                  {transaction.to.slice(0, 14)}...
+                </span>
               </div>
             </div>
             <div className="p-2 font-bold bg-zinc-950 border border-zinc-800 text-xs rounded-md ml-auto">
-              0.04007 Eth
+              {transaction.value.toNumber()} Eth
             </div>
           </div>
         ))}

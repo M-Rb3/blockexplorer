@@ -1,28 +1,32 @@
 import { Utils } from "alchemy-sdk";
 import { ethers } from "ethers";
 
-export function timeDifference(previous) {
-  const current = new Date().getTime();
-  var msPerMinute = 60 * 1000;
-  var msPerHour = msPerMinute * 60;
-  var msPerDay = msPerHour * 24;
-  var msPerMonth = msPerDay * 30;
-  var msPerYear = msPerDay * 365;
+export function timeDifference(timestamp) {
+  const currentTime = Date.now();
 
-  var elapsed = current - previous;
+  const timeDifference = currentTime - timestamp * 1000;
 
-  if (elapsed < msPerMinute) {
-    return Math.round(elapsed / 1000) + " seconds ago";
-  } else if (elapsed < msPerHour) {
-    return Math.round(elapsed / msPerMinute) + " minutes ago";
-  } else if (elapsed < msPerDay) {
-    return Math.round(elapsed / msPerHour) + " hours ago";
-  } else if (elapsed < msPerMonth) {
-    return Math.round(elapsed / msPerDay) + " days ago";
-  } else if (elapsed < msPerYear) {
-    return Math.round(elapsed / msPerMonth) + " months ago";
+  const seconds = Math.floor(timeDifference / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+
+  if (days > 0) {
+    const remainderHours = hours % 24;
+    if (remainderHours === 0) return `${days} day${days !== 1 ? "s" : ""}`;
+    return `${days} day${days !== 1 ? "s" : ""} and ${remainderHours} hour${
+      remainderHours !== 1 ? "s" : ""
+    } ago`;
+  } else if (hours > 0) {
+    const remainderMinutes = minutes % 60;
+    if (remainderMinutes === 0) return `${hours} hour${hours !== 1 ? "s" : ""}`;
+    return `${hours} hour${
+      hours !== 1 ? "s" : ""
+    } and ${remainderMinutes} minute${remainderMinutes !== 1 ? "s" : ""} ago`;
+  } else if (minutes > 0) {
+    return `${minutes} minute${minutes !== 1 ? "s" : ""} ago`;
   } else {
-    return Math.round(elapsed / msPerYear) + " years ago";
+    return `${seconds} second${seconds !== 1 ? "s" : ""} ago`;
   }
 }
 

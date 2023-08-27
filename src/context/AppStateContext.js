@@ -1,4 +1,5 @@
 import React, { createContext, useState } from "react";
+import { Alchemy, Network } from "alchemy-sdk";
 
 // Create two context:
 // SettingContext: to query the context state
@@ -19,8 +20,14 @@ const SettingDispatchContext = createContext(undefined);
 // You can read more about the packages here:
 //   https://docs.alchemy.com/reference/alchemy-sdk-api-surface-overview#api-surface
 function SettingProvider({ children }) {
+  const settings = {
+    apiKey: process.env.REACT_APP_ALCHEMY_API_KEY,
+    network: Network.ETH_MAINNET,
+  };
+
+  const alchemy = new Alchemy(settings);
   const [states, setStates] = useState({
-    alchemy: {},
+    alchemy,
     blockNumber: "",
     transactions: [],
     blocks: [],
