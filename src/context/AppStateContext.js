@@ -26,6 +26,7 @@ function SettingProvider({ children }) {
   };
 
   const alchemy = new Alchemy(settings);
+
   const [states, setStates] = useState({
     alchemy,
     blockNumber: "",

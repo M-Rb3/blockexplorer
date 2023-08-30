@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import { SettingProvider } from "./context/AppStateContext";
 import BlockDetails from "./pages/BlockDetails";
+import TransactionDetail from "./pages/TransactionDetail";
 import Nav from "./components/Nav";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -19,6 +20,9 @@ ReactDOM.render(
             </Route>
             <Route path="/block/:blockNumber" exact>
               <BlockDetails />
+            </Route>
+            <Route path="/transcation/:txhash" exact>
+              <TransactionDetail />
             </Route>
           </div>
         </SettingProvider>

@@ -9,7 +9,6 @@ import HeroDetails from "./components/HeroDetails";
 function App() {
   const { alchemy } = useContext(SettingContext);
   const dispatch = useContext(SettingDispatchContext);
-
   useEffect(() => {
     if (alchemy)
       (async function getBlockNumber() {
@@ -50,9 +49,7 @@ function App() {
           <HeroDetails />
         </div>
         <div className="grid lg:grid-cols-2 grid-cols-1 gap-5">
-          <div>
-            <Blocks />
-          </div>
+          <div>{/* <Blocks /> */}</div>
           <div>
             <Transactions />
           </div>

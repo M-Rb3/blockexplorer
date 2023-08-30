@@ -5,7 +5,6 @@ import { SettingContext } from "../context/AppStateContext";
 const Block = ({ block }) => {
   const [blockReward, setBlockReward] = useState("...");
   const { alchemy } = useContext(SettingContext);
-  console.log(block);
   useEffect(() => {
     (async function () {
       const blockReward = await getBlockReward(block, alchemy);

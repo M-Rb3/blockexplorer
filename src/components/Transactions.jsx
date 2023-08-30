@@ -1,11 +1,22 @@
+import data from "../transaction.json";
 import React, { useContext, useEffect, useState } from "react";
 import { SettingContext } from "../context/AppStateContext";
 import { timeDifference, getBlockReward } from "./utils";
+import { Utils } from "alchemy-sdk";
 import { ethers } from "ethers";
+
+const value = {
+  type: "BigNumber",
+  hex: "0x43524011",
+};
 
 const Transactions = () => {
   // const [updatedBlocks, setUpdatedBlocks] = useState([]);
   const { alchemy, transactions } = useContext(SettingContext);
+
+  // console.log(Utils.formatEther(ethers.BigNumber.from(value).toNumber()));
+  if (transactions[1])
+    console.log(transactions[1], Utils.formatEther(transactions[1].value));
 
   return (
     <div className="bg-zinc-900 rounded-md">
@@ -14,7 +25,10 @@ const Transactions = () => {
       </div>
       <div className="flex flex-col">
         {transactions?.map((transaction) => (
-          <div className="flex items-center gap-5 p-4 text-sm cursor-pointer border-b border-b-zinc-800">
+          <div
+            className="flex items-center gap-5 p-4 text-sm cursor-pointer border-b border-b-zinc-800"
+            key={transaction.hash}
+          >
             <div className="h-12 w-12 flex items-center justify-center bg-zinc-800 rounded-md">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -44,12 +58,14 @@ const Transactions = () => {
                 To{" "}
                 <span className="text-blue-500">
                   {" "}
-                  {transaction.to.slice(0, 14)}...
+                  {transaction?.to.slice(0, 14)}...
                 </span>
               </div>
             </div>
             <div className="p-2 font-bold bg-zinc-950 border border-zinc-800 text-xs rounded-md ml-auto">
-              {transaction.value.toNumber()} Eth
+              {/* {parseFloat(Utils.formatEther(value.toNumber())).toFixed(3)} Eth */}
+              {parseFloat(Utils.formatEther(transactions[0].value)).toFixed(3)}
+              Eth
             </div>
           </div>
         ))}

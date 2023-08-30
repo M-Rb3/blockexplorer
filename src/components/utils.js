@@ -38,7 +38,6 @@ export const getBlockReward = async (block, alchemy) => {
   try {
     console.log("fetching block rewards...");
     const transactions = block?.transactions;
-    console.log(block);
     const baseFeePerGas = block.baseFeePerGas;
     const gasUsed = block.gasUsed;
 
@@ -47,15 +46,12 @@ export const getBlockReward = async (block, alchemy) => {
 
     for (const tx of transactions) {
       const txGasUseage = await getGasUsage(tx.hash);
-      console.log(txGasUseage);
       const totalFee = Utils.formatEther(
         ethers.BigNumber.from(txGasUseage).mul(tx.gasPrice).toString()
       );
-      console.log(totalFee);
 
       minerTips.push(Number(totalFee));
     }
-    console.log(minerTips);
     if (transactions.length > 0) {
       sumMinerTips = minerTips.reduce(
         (prevTip, currentTip) => prevTip + currentTip
