@@ -1,15 +1,8 @@
-import data from "../transaction.json";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { SettingContext } from "../context/AppStateContext";
-import { timeDifference, getBlockReward } from "./utils";
+import { timeDifference } from "./utils";
 import { Utils } from "alchemy-sdk";
-import { ethers } from "ethers";
-
-const value = {
-  type: "BigNumber",
-  hex: "0x43524011",
-};
-
+import { Link } from "react-router-dom";
 const Transactions = () => {
   // const [updatedBlocks, setUpdatedBlocks] = useState([]);
   const { alchemy, transactions } = useContext(SettingContext);
@@ -41,9 +34,9 @@ const Transactions = () => {
               </svg>
             </div>
             <div className="flex flex-col text-left">
-              <div className="text-blue-500">
+              <Link to={`/tx/${transaction.hash}`} className="text-blue-500">
                 {transaction.hash.slice(0, 14)}...
-              </div>
+              </Link>
               <div>16 secs ago</div>
             </div>
             <div className="flex flex-col text-center">
@@ -64,7 +57,7 @@ const Transactions = () => {
             </div>
             <div className="p-2 font-bold bg-zinc-950 border border-zinc-800 text-xs rounded-md ml-auto">
               {/* {parseFloat(Utils.formatEther(value.toNumber())).toFixed(3)} Eth */}
-              {parseFloat(Utils.formatEther(transactions[0].value)).toFixed(3)}
+              {parseFloat(Utils.formatEther(transaction.value)).toFixed(3)}
               Eth
             </div>
           </div>

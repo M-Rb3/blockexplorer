@@ -30,11 +30,18 @@ export function timeDifference(timestamp) {
   }
 }
 
+const getGasUsage = async (alchemy, hash, isBlock = false) => {
+  if (isBlock) {
+    const txRes = await alchemy.core.getTransactionReceipts({
+      blockHash: hash,
+    });
+    return txRes;
+  }
+  const txRes = await alchemy.core.getTransactionReceipt(`${hash}`);
+  return txRes;
+};
+
 export const getBlockReward = async (block, alchemy) => {
-  const getGasUsage = async (hash) => {
-    const txRes = await alchemy.core.getTransactionReceipt(`${hash}`);
-    return txRes.gasUsed;
-  };
   try {
     console.log("fetching block rewards...");
     const transactions = block?.transactions;
@@ -44,10 +51,10 @@ export const getBlockReward = async (block, alchemy) => {
     let minerTips = [];
     let sumMinerTips = 0;
 
-    for (const tx of transactions) {
-      const txGasUseage = await getGasUsage(tx.hash);
+    const { receipts } = await getGasUsage(alchemy, block.hash, true);
+    for (const tx of receipts) {
       const totalFee = Utils.formatEther(
-        ethers.BigNumber.from(txGasUseage).mul(tx.gasPrice).toString()
+        ethers.BigNumber.from(tx.gasUsed).mul(tx.effectiveGasPrice).toString()
       );
 
       minerTips.push(Number(totalFee));
@@ -71,4 +78,12 @@ export const getBlockReward = async (block, alchemy) => {
     console.log(error);
     return "";
   }
+};
+
+export const getTxReceipt = async (alchemy, tx) => {
+  const receipt = await getGasUsage(alchemy, tx.hash);
+  const txFees = Utils.formatEther(
+    ethers.BigNumber.from(receipt.gasUsed).mul(tx.gasPrice).toString()
+  );
+  return { txFees, status: receipt.status, gasUsage: receipt.gasUsed };
 };

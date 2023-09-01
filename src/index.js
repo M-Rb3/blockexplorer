@@ -21,7 +21,7 @@ ReactDOM.render(
             <Route path="/block/:blockNumber" exact>
               <BlockDetails />
             </Route>
-            <Route path="/transcation/:txhash" exact>
+            <Route path="/tx/:txHash" exact>
               <TransactionDetail />
             </Route>
           </div>

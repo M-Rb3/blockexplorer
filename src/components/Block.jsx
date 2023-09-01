@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { timeDifference, getBlockReward } from "./utils";
 import { SettingContext } from "../context/AppStateContext";
+import { Link } from "react-router-dom";
 
 const Block = ({ block }) => {
   const [blockReward, setBlockReward] = useState("...");
@@ -29,7 +30,9 @@ const Block = ({ block }) => {
         </svg>
       </div>
       <div className="flex flex-col text-left">
-        <div className="text-blue-500">{block.number}</div>
+        <Link to={`/block/${block.number}`} className="text-blue-500">
+          {block.number}
+        </Link>
         <div className="text-zinc-500">{timeDifference(block.timestamp)}</div>
       </div>
       <div className="flex flex-col text-left">
