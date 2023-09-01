@@ -47,8 +47,8 @@ const HeroDetails = () => {
           <div className="flex flex-col items-start justify-center">
             <div className="text-zinc-400 text-xs">ETHER PRICE</div>
             <div className="text-sm">
-              $1,743.43 <span className="text-zinc-400"> @ 0.06763 BTC </span>{" "}
-              <span className="text-green-600"> (+0.48%)</span>
+              $....... <span className="text-zinc-400"> @ ....... BTC </span>{" "}
+              <span className="text-green-600"> (+....%)</span>
             </div>
           </div>
         </div>
@@ -65,8 +65,8 @@ const HeroDetails = () => {
             <div className="flex flex-col items-start justify-center">
               <div className="text-zinc-400 text-xs">MARKET CAP</div>
               <div className="text-sm">
-                $1,743.43 <span className="text-zinc-400"> @ 0.06763 BTC </span>{" "}
-                <span className="text-green-600"> (+0.48%)</span>
+                $....... <span className="text-zinc-400"> @ .... BTC </span>{" "}
+                <span className="text-green-600"> (+...%)</span>
               </div>
             </div>
           </div>
@@ -84,7 +84,7 @@ const HeroDetails = () => {
           <div className="flex flex-col items-start justify-center">
             <div className="text-zinc-400 text-xs">TRANSACTIONS</div>
             <div className="text-sm">
-              1,996.83 M <span className="text-zinc-400"> (14.7 TPS)</span>{" "}
+              ....... <span className="text-zinc-400"> (.... TPS)</span>{" "}
             </div>
           </div>
         </div>

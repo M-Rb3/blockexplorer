@@ -7,12 +7,12 @@ const Nav = () => {
       <div className="flex flex-col w-full">
         <div className="flex gap-5 text-xs px-5 py-1 items-center border-b  border-b-zinc-700 shadow-zinc-500 sticky top-0">
           <div>
-            ETH Price: <span className="text-blue-500">$1,753.15 </span>
-            <span className="text-green-600"> (+0.67%)</span>{" "}
+            ETH Price: <span className="text-blue-500">$....... </span>
+            <span className="text-green-600"> (+....%)</span>{" "}
           </div>
           <div>
             Gas:
-            <span className="text-blue-500"> 25 Gwei</span>
+            <span className="text-blue-500"> .. Gwei</span>
           </div>
           <div className="ml-auto">
             <button className="flex justify-center items-center w-9 h-9 rounded-md bg-zinc-700 shadow-sm transition-all hover:bg-zinc-500">
