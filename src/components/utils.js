@@ -2,8 +2,7 @@ import { Utils } from "alchemy-sdk";
 import { ethers } from "ethers";
 
 export function timeDifference(timestamp) {
-  const currentTime = Date.now();
-
+  const currentTime = new Date().getTime();
   const timeDifference = currentTime - timestamp * 1000;
 
   const seconds = Math.floor(timeDifference / 1000);
